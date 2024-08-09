@@ -1,0 +1,31 @@
+running egg_info
+writing ../../build/position_estimator/position_estimator.egg-info/PKG-INFO
+writing dependency_links to ../../build/position_estimator/position_estimator.egg-info/dependency_links.txt
+writing entry points to ../../build/position_estimator/position_estimator.egg-info/entry_points.txt
+writing requirements to ../../build/position_estimator/position_estimator.egg-info/requires.txt
+writing top-level names to ../../build/position_estimator/position_estimator.egg-info/top_level.txt
+reading manifest file '../../build/position_estimator/position_estimator.egg-info/SOURCES.txt'
+writing manifest file '../../build/position_estimator/position_estimator.egg-info/SOURCES.txt'
+running build
+running build_py
+copying position_estimator/ecef_gps.py -> /home/ghassen/navera/build/position_estimator/build/lib/position_estimator
+copying position_estimator/gps_ecef.py -> /home/ghassen/navera/build/position_estimator/build/lib/position_estimator
+copying position_estimator/ukf_node.py -> /home/ghassen/navera/build/position_estimator/build/lib/position_estimator
+running install
+running install_lib
+copying /home/ghassen/navera/build/position_estimator/build/lib/position_estimator/ecef_gps.py -> /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator
+copying /home/ghassen/navera/build/position_estimator/build/lib/position_estimator/gps_ecef.py -> /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator
+copying /home/ghassen/navera/build/position_estimator/build/lib/position_estimator/ukf_node.py -> /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator
+byte-compiling /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator/ecef_gps.py to ecef_gps.cpython-310.pyc
+byte-compiling /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator/gps_ecef.py to gps_ecef.cpython-310.pyc
+byte-compiling /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator/ukf_node.py to ukf_node.cpython-310.pyc
+running install_data
+copying package.xml -> /home/ghassen/navera/install/position_estimator/share/position_estimator
+running install_egg_info
+removing '/home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/position_estimator/position_estimator.egg-info to /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator-0.0.0-py3.10.egg-info
+running install_scripts
+Installing ecef_gps script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+Installing gps_ecef script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+Installing ukf_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+writing list of installed files to '/home/ghassen/navera/build/position_estimator/install.log'

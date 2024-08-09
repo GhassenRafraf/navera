@@ -1,0 +1,5 @@
+[console_scripts]
+ecef_gps = position_estimator.ecef_gps:main
+gps_ecef = position_estimator.gps_ecef:main
+ukf_node = position_estimator.ukf_node:main
+
