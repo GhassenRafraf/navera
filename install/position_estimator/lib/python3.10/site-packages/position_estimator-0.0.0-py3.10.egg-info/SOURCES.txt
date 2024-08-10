@@ -8,9 +8,15 @@ setup.py
 ../../build/position_estimator/position_estimator.egg-info/requires.txt
 ../../build/position_estimator/position_estimator.egg-info/top_level.txt
 ../../build/position_estimator/position_estimator.egg-info/zip-safe
+position_estimator/GPS_node.py
+position_estimator/IMU_node.py
 position_estimator/__init__.py
+position_estimator/aerial_vision_node.py
+position_estimator/celestial_vision_node.py
 position_estimator/ecef_gps.py
+position_estimator/gpsDriverNode.py
 position_estimator/gps_ecef.py
+position_estimator/imuDriverNode.py
 position_estimator/ukf_node.py
 resource/position_estimator
 test/test_copyright.py

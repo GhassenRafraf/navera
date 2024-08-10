@@ -1,5 +1,9 @@
 [console_scripts]
-ecef_gps = position_estimator.ecef_gps:main
-gps_ecef = position_estimator.gps_ecef:main
+GPS_node = position_estimator.GPS_node:main
+IMU_node = position_estimator.IMU_node:main
+aerial_vision_node = position_estimator.aerial_vision_node:main
+celestial_vision_node = position_estimator.celestial_vision_node:main
+gpsDriverNode = position_estimator.gpsDriverNode:main
+imuDriverNode = position_estimator.imuDriverNode:main
 ukf_node = position_estimator.ukf_node:main
 

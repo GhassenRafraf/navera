@@ -21,8 +21,12 @@ setup(
     entry_points={
         'console_scripts': [
 		'ukf_node = position_estimator.ukf_node:main',
-		'gps_ecef = position_estimator.gps_ecef:main',
-		'ecef_gps = position_estimator.ecef_gps:main',
+		'celestial_vision_node = position_estimator.celestial_vision_node:main',
+		'aerial_vision_node = position_estimator.aerial_vision_node:main',
+		'GPS_node = position_estimator.GPS_node:main',
+		'IMU_node = position_estimator.IMU_node:main',
+		'gpsDriverNode = position_estimator.gpsDriverNode:main',
+		'imuDriverNode = position_estimator.imuDriverNode:main',
         ],
     },
 )
