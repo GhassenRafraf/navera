@@ -23,7 +23,7 @@ cd navera
 ## Build the Project
 
 ```bash
-cd ~/ros2_ws
+cd ~/navera
 colcon build
 ```
 
