@@ -23,7 +23,7 @@ class EcefToGpsNode(Node):
     def listener_callback(self, msg):
         x, y, z = msg.data
         
-        lat, lon, alt = EcefToGps.ecef_to_gps(x, y, z)
+        lat, lon, alt = EcefToGpsNode.ecef_to_gps(x, y, z)
         
         gps_msg = NavSatFix()
         gps_msg.latitude = lat
