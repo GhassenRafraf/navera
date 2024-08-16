@@ -11,7 +11,7 @@ class ImageAdjustmentNode(Node):
         self.aerial_coords_sub = self.create_subscription(
             PointStamped,
             'celestialCoords',
-            self.aerial_coords_callback,
+            self.celestial_coords_callback,
             10)
 
         self.imu_raw_data_sub = self.create_subscription(

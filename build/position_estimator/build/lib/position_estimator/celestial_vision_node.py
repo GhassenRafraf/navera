@@ -3,7 +3,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import PoseStamped
 
-class AerialVisionNode(Node):
+class CelestialVisionNode(Node):
     def __init__(self):
         super().__init__('celestial_vision_node')
         self.node_id = "celestial_vision_id"
