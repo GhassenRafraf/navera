@@ -1,5 +1,7 @@
 import rclpy
 from rclpy.node import Node
+from sensor_msgs.msg import Imu
+from geometry_msgs.msg import PointStamped
 from std_msgs.msg import Float64MultiArray
 import numpy as np
 from scipy.linalg import cholesky
@@ -33,19 +35,13 @@ class DronePositionEstimatorUKF:
             sigma_points[:, i + 1 + self.n] = x.flatten() - L[:, i]
         return sigma_points
 
-    def acceleration_x_function(self, dt):
-        return 0.1 * dt
-
-    def acceleration_y_function(self, dt):
-        return 0.2 * dt
-
-    def predict_sigma_points(self, dt=1):
+    def predict_sigma_points(self, dt=1, accel_x=0, accel_y=0):
         sigma_points = self.unscented_transform(self.x, self.P, self.alpha)
         for i in range(self.num_sigmas):
-            sigma_points[0, i] += sigma_points[2, i] * dt + 0.5 * self.acceleration_x_function(dt) * dt**2
-            sigma_points[1, i] += sigma_points[3, i] * dt + 0.5 * self.acceleration_y_function(dt) * dt**2
-            sigma_points[2, i] += self.acceleration_x_function(dt)  
-            sigma_points[3, i] += self.acceleration_y_function(dt)  
+            sigma_points[0, i] += sigma_points[2, i] * dt + 0.5 * accel_x * dt**2
+            sigma_points[1, i] += sigma_points[3, i] * dt + 0.5 * accel_y * dt**2
+            sigma_points[2, i] += accel_x * dt  
+            sigma_points[3, i] += accel_y * dt  
         return sigma_points
 
     def predict_mean_and_covariance(self, sigma_points):
@@ -57,8 +53,8 @@ class DronePositionEstimatorUKF:
         P_pred += self.Q
         return x_pred, P_pred
 
-    def predict(self, dt=1):
-        sigma_points = self.predict_sigma_points(dt)
+    def predict(self, dt=1, accel_x=0, accel_y=0):
+        sigma_points = self.predict_sigma_points(dt, accel_x, accel_y)
         x_pred, P_pred = self.predict_mean_and_covariance(sigma_points)
         return x_pred, P_pred
 
@@ -88,7 +84,7 @@ class DronePositionEstimatorUKF:
         return np.sqrt(diff.T @ cov_inv @ diff)
 
     def detect_outliers(self, coords):
-        if len(coords) < 3:  
+        if len(coords) < 3:
             return np.zeros(len(coords)), 0
         
         mean = np.mean(coords, axis=0)
@@ -129,54 +125,80 @@ class DronePositionEstimatorUKF:
 class UKFNode(Node):
     def __init__(self):
         super().__init__('ukf_node')
+
+        # Define a fixed ID for this node
+        self.node_id = "ukf_node_id"
+
+        # Subscribers
         self.subscription_imu = self.create_subscription(
-            Float64MultiArray,
-            'imuData',
-            self.listener_callback,
+            Imu,
+            'imuRawData',
+            self.imu_callback,
             10
         )
         self.subscription_celestial = self.create_subscription(
-            Float64MultiArray,
+            PointStamped,
             'celestialData',
-            self.listener_callback,
+            self.point_callback,
             10
         )
         self.subscription_aerial = self.create_subscription(
-            Float64MultiArray,
+            PointStamped,
             'aerialData',
-            self.listener_callback,
+            self.point_callback,
             10
         )
         self.subscription_gps = self.create_subscription(
-            Float64MultiArray,
+            PointStamped,
             'gpsData',
-            self.listener_callback,
+            self.point_callback,
             10
         )
+        self.subscription_gps = self.create_subscription(
+            PointStamped,
+            'imuData',
+            self.point_callback,
+            10
+        )
+
+        # Publisher
         self.publisher = self.create_publisher(
-            Float64MultiArray,
+            PointStamped,
             'estimated_position',
             10
         )
+
+        # UKF estimator
         self.ukf_estimator = DronePositionEstimatorUKF()
         self.received_data = []
+        self.last_imu_data = None
         self.get_logger().info('UKF Node has been started.')
 
-    def listener_callback(self, msg):
+    def imu_callback(self, msg):
+        # Extract acceleration from IMU data
+        accel_x = msg.linear_acceleration.x
+        accel_y = msg.linear_acceleration.y
+
+        self.last_imu_data = (accel_x, accel_y)
+
+    def point_callback(self, msg):
         # Collect data from each topic
-        self.received_data.append(np.array(msg.data).reshape(-1, 2))
+        self.received_data.append(np.array([msg.point.x, msg.point.y]).reshape(1, -1))
 
         # Check if data from all topics have been received
-        if len(self.received_data) == 4:
+        if len(self.received_data) == 5 and self.last_imu_data:
             # Concatenate all received data
             all_coords = np.concatenate(self.received_data, axis=0)
+            accel_x, accel_y = self.last_imu_data
 
             # Estimate position using UKF
-            estimated_position = self.ukf_estimator.estimate_position(all_coords)
+            estimated_position = self.ukf_estimator.predict(all_coords, accel_x=accel_x, accel_y=accel_y)
 
             # Prepare the message to be published
-            estimated_position_msg = Float64MultiArray()
-            estimated_position_msg.data = estimated_position.flatten().tolist()
+            estimated_position_msg = PointStamped()
+            estimated_position_msg.header.stamp = self.get_clock().now().to_msg()
+            estimated_position_msg.header.frame_id = self.node_id
+            estimated_position_msg.point.x, estimated_position_msg.point.y = estimated_position.flatten()
 
             # Publish the estimated position
             self.publisher.publish(estimated_position_msg)

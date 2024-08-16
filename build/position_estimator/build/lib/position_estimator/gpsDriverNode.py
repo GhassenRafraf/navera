@@ -1,22 +1,21 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String  
+from sensor_msgs.msg import NavSatFix
 
 class GPSDriverNode(Node):
     def __init__(self):
         super().__init__('gps_driver_node')
-        self.publisher_ = self.create_publisher(String, 'gpsRawData', 10)
-        self.timer = self.create_timer(1.0, self.publish_data)  
+        self.publisher_ = self.create_publisher(NavSatFix, 'gpsRawData', 10)
+        self.timer = self.create_timer(1.0, self.publish_data)
 
     def publish_data(self):
-        msg = String()  
-        msg.data = self.read_gps_sensor()  
-        self.publisher_.publish(msg)
-        self.get_logger().info(f'Publishing GPS data: {msg.data}')
+        # Template for NavSatFix message publishing
+        msg = NavSatFix()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = "gps_frame"
 
-    def read_gps_sensor(self):
-        # Replace with actual GPS sensor reading logic
-        return "GPS data"
+        # Publish the NavSatFix message (without treatment for now)
+        self.publisher_.publish(msg)
 
 def main(args=None):
     rclpy.init(args=args)

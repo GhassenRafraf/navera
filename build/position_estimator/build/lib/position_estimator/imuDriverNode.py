@@ -1,22 +1,21 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String  
+from sensor_msgs.msg import Imu
 
 class IMUDriverNode(Node):
     def __init__(self):
         super().__init__('imu_driver_node')
-        self.publisher_ = self.create_publisher(String, 'imuRawData', 10)
+        self.publisher_ = self.create_publisher(Imu, 'imuRawData', 10)
         self.timer = self.create_timer(1.0, self.publish_data)
 
     def publish_data(self):
-        msg = String()  
-        msg.data = self.read_imu_sensor()
-        self.publisher_.publish(msg)
-        self.get_logger().info(f'Publishing IMU data: {msg.data}')
+        # Template for Imu message publishing
+        msg = Imu()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = "imu_frame"
 
-    def read_imu_sensor(self):
-        # Replace with actual IMU sensor reading logic
-        return "IMU data"
+        # Publish the Imu message (without treatment for now)
+        self.publisher_.publish(msg)
 
 def main(args=None):
     rclpy.init(args=args)

@@ -11,7 +11,9 @@ setup.py
 position_estimator/GPS_node.py
 position_estimator/IMU_node.py
 position_estimator/__init__.py
+position_estimator/aerial_adjustment_node.py
 position_estimator/aerial_vision_node.py
+position_estimator/celestial_adjustment_node.py
 position_estimator/celestial_vision_node.py
 position_estimator/ecef_gps.py
 position_estimator/gpsDriverNode.py

@@ -27,6 +27,8 @@ setup(
 		'IMU_node = position_estimator.IMU_node:main',
 		'gpsDriverNode = position_estimator.gpsDriverNode:main',
 		'imuDriverNode = position_estimator.imuDriverNode:main',
+		'aerialAdjustmentNode = position_estimator.aerial_adjustment_node:main',
+		'celestialAdjustmentNode = position_estimator.celestial_adjustment_node:main',
         ],
     },
 )

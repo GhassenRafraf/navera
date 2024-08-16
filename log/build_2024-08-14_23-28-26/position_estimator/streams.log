@@ -1,0 +1,34 @@
+[0.504s] Invoking command in '/home/ghassen/navera/src/position_estimator': PYTHONPATH=/home/ghassen/navera/build/position_estimator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/position_estimator build --build-base /home/ghassen/navera/build/position_estimator/build install --record /home/ghassen/navera/build/position_estimator/install.log --single-version-externally-managed install_data
+[0.647s] running egg_info
+[0.647s] writing ../../build/position_estimator/position_estimator.egg-info/PKG-INFO
+[0.648s] writing dependency_links to ../../build/position_estimator/position_estimator.egg-info/dependency_links.txt
+[0.648s] writing entry points to ../../build/position_estimator/position_estimator.egg-info/entry_points.txt
+[0.648s] writing requirements to ../../build/position_estimator/position_estimator.egg-info/requires.txt
+[0.648s] writing top-level names to ../../build/position_estimator/position_estimator.egg-info/top_level.txt
+[0.651s] reading manifest file '../../build/position_estimator/position_estimator.egg-info/SOURCES.txt'
+[0.652s] writing manifest file '../../build/position_estimator/position_estimator.egg-info/SOURCES.txt'
+[0.652s] running build
+[0.652s] running build_py
+[0.653s] copying position_estimator/aerial_adjustment_node.py -> /home/ghassen/navera/build/position_estimator/build/lib/position_estimator
+[0.653s] copying position_estimator/aerial_vision_node.py -> /home/ghassen/navera/build/position_estimator/build/lib/position_estimator
+[0.655s] running install
+[0.656s] running install_lib
+[0.657s] copying /home/ghassen/navera/build/position_estimator/build/lib/position_estimator/aerial_adjustment_node.py -> /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator
+[0.658s] copying /home/ghassen/navera/build/position_estimator/build/lib/position_estimator/aerial_vision_node.py -> /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator
+[0.661s] byte-compiling /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator/aerial_adjustment_node.py to aerial_adjustment_node.cpython-310.pyc
+[0.662s] byte-compiling /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator/aerial_vision_node.py to aerial_vision_node.cpython-310.pyc
+[0.664s] running install_data
+[0.664s] running install_egg_info
+[0.666s] removing '/home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator-0.0.0-py3.10.egg-info' (and everything under it)
+[0.670s] Copying ../../build/position_estimator/position_estimator.egg-info to /home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages/position_estimator-0.0.0-py3.10.egg-info
+[0.672s] running install_scripts
+[0.690s] Installing GPS_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.691s] Installing IMU_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.691s] Installing aerialAdjustmentNode script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.692s] Installing aerial_vision_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.692s] Installing celestial_vision_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.692s] Installing gpsDriverNode script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.692s] Installing imuDriverNode script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.692s] Installing ukf_node script to /home/ghassen/navera/install/position_estimator/lib/position_estimator
+[0.693s] writing list of installed files to '/home/ghassen/navera/build/position_estimator/install.log'
+[0.714s] Invoked command in '/home/ghassen/navera/src/position_estimator' returned '0': PYTHONPATH=/home/ghassen/navera/build/position_estimator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ghassen/navera/install/position_estimator/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/position_estimator build --build-base /home/ghassen/navera/build/position_estimator/build install --record /home/ghassen/navera/build/position_estimator/install.log --single-version-externally-managed install_data

@@ -1,7 +1,9 @@
 [console_scripts]
 GPS_node = position_estimator.GPS_node:main
 IMU_node = position_estimator.IMU_node:main
+aerialAdjustmentNode = position_estimator.aerial_adjustment_node:main
 aerial_vision_node = position_estimator.aerial_vision_node:main
+celestialAdjustmentNode = position_estimator.celestial_adjustment_node:main
 celestial_vision_node = position_estimator.celestial_vision_node:main
 gpsDriverNode = position_estimator.gpsDriverNode:main
 imuDriverNode = position_estimator.imuDriverNode:main

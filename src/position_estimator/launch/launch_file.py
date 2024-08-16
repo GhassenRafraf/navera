@@ -12,7 +12,7 @@ def generate_launch_description():
         Node(
             package='position_estimator',
             executable='imuDriverNode',
-            name='imeDriverNode',
+            name='imuDriverNode',
         ),
 
         Node(
@@ -39,5 +39,15 @@ def generate_launch_description():
             package='position_estimator',
             executable='ukf_node',
             name='ukf_node'
+        ),
+        Node(
+            package='position_estimator',
+            executable='aerialAdjustmentNode',
+            name='aerialAdjustmentNode',
+        ),
+        Node(
+            package='position_estimator',
+            executable='celestialAdjustmentNode',
+            name='celestialAdjustmentNode',
         ),
     ])
